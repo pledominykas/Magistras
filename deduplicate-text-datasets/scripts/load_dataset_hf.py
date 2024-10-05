@@ -12,7 +12,6 @@
 # limitations under the License.
 
 import datasets
-from datasets import load_from_disk
 import os
 import struct
 import numpy as np
@@ -54,7 +53,7 @@ if dataset_name in FILE_EXTENSIONS:
     data_files = glob.glob(f"{data_dir}/*.{FILE_EXTENSIONS[dataset_name]}")
     ds = datasets.load_dataset(dataset_name, subset, data_files=data_files, split=split)
 else:
-    ds = load_from_disk(data_dir)
+    ds = datasets.load_dataset(dataset_name, subset, split=split)
 assert isinstance(ds, datasets.Dataset), "This is not a HF-dataset. It might be a DatasetDict. Try passing `split`?"
 
 UID = 0
