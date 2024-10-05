@@ -1,0 +1,11 @@
+C:\Users\domin\Desktop\Magistras\og\deduplicate-text-datasets\target\debug\deps\liblibc-68f9f84c2a107241.rmeta: C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src/lib.rs C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\macros.rs C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\fixed_width_ints.rs C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\windows\mod.rs C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\windows\msvc\mod.rs
+
+C:\Users\domin\Desktop\Magistras\og\deduplicate-text-datasets\target\debug\deps\liblibc-68f9f84c2a107241.rlib: C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src/lib.rs C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\macros.rs C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\fixed_width_ints.rs C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\windows\mod.rs C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\windows\msvc\mod.rs
+
+C:\Users\domin\Desktop\Magistras\og\deduplicate-text-datasets\target\debug\deps\libc-68f9f84c2a107241.d: C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src/lib.rs C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\macros.rs C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\fixed_width_ints.rs C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\windows\mod.rs C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\windows\msvc\mod.rs
+
+C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src/lib.rs:
+C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\macros.rs:
+C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\fixed_width_ints.rs:
+C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\windows\mod.rs:
+C:\Users\domin\.cargo\registry\src\index.crates.io-6f17d22bba15001f\libc-0.2.159\src\windows\msvc\mod.rs:
