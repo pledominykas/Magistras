@@ -17,14 +17,11 @@ def detect_language(entry):
     }
 
 if __name__ == "__main__":
-    dataset = load_from_disk("C:/Users/domin/Desktop/Magistras/c4_lithuanian.hf")
-    dataset_train = dataset["train"]
-    dataset_validation = dataset["validation"]
-    dataset_combined = concatenate_datasets([dataset_train, dataset_validation])
-    # dataset_combined = dataset_combined.take(1000)
+    dataset = load_from_disk("./output-k-200")
 
     num_cores = cpu_count()
 
-    dataset_combined = dataset_combined.map(detect_language, num_proc=num_cores)
+    dataset_l = dataset.map(detect_language, num_proc=num_cores)
 
-    dataset_combined.save_to_disk("C:/Users/domin/Desktop/Magistras/c4_lithuanian_with_language_results.hf")
+    dataset_l.save_to_disk("./output-k-200-with-language-results")
+    dataset_l.cleanup_cache_files()

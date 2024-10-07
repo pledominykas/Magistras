@@ -29,9 +29,9 @@ def slice_out_non_lithuanian(entry):
 
 
 if __name__ == "__main__":
-    dataset = load_from_disk("C:/Users/domin/Desktop/Magistras/c4_lithuanian_with_language_results.hf")
+    dataset = load_from_disk("./output-k-200-with-language-results")
     
     results = dataset.filter(remove_non_lithuanian, num_proc=8)
     results = results.map(slice_out_non_lithuanian, num_proc=8)
 
-    results.save_to_disk("C:/Users/domin/Desktop/Magistras/c4_lithuanian_cleaned.hf")
+    results.save_to_disk("./output-k-200-cleaned")
