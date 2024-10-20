@@ -2,7 +2,7 @@ from datasets import load_from_disk
 
 
 bad_words = []
-with open('./bad_words.txt', encoding="utf8") as f:
+with open('./Magistras/bad_words.txt', encoding="utf8") as f:
     bad_words = f.read().splitlines()
 
 
