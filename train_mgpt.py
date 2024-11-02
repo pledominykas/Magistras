@@ -1,11 +1,8 @@
-from huggingface_hub import login
 from datasets import load_from_disk
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from trl import SFTTrainer
 from transformers import TrainingArguments
 import json
-
-login(token='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')
 
 tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
 model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT")
