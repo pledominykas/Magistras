@@ -11,7 +11,7 @@ tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
 model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT")
 
 train_dataset = load_from_disk("./output-k-200-cleaned-no-bad-words")
-eval_dataset = load_from_disk("./c4-validation")
+eval_dataset = load_from_disk("./c4-lithuanian-validation")
 
 trainer = SFTTrainer(
     model = model,
