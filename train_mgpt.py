@@ -6,13 +6,18 @@ import json
 # import torch
 from torch.nn.parallel import DistributedDataParallel as DDP
 # import torch.distributed as dist
+from accelerate import PartialState
 
 def train():
     # n_gpus = torch.cuda.device_count()
     # dist.init_process_group()
 
     tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
-    model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT", device_map="auto")
+
+    device_string = PartialState().process_index
+    device_map = {'': device_string}
+
+    model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT", device_map=device_map)
 
     # if n_gpus > 1:
     #     model = DDP(model)
