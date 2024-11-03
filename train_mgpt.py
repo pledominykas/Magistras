@@ -3,19 +3,19 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from trl import SFTTrainer
 from transformers import TrainingArguments
 import json
-import torch
+# import torch
 from torch.nn.parallel import DistributedDataParallel as DDP
-import torch.distributed as dist
+# import torch.distributed as dist
 
 def train():
-    n_gpus = torch.cuda.device_count()
-    dist.init_process_group()
+    # n_gpus = torch.cuda.device_count()
+    # dist.init_process_group()
 
     tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
-    model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT")
+    model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT", device_map="auto")
 
-    if n_gpus > 1:
-        model = DDP(model)
+    # if n_gpus > 1:
+    #     model = DDP(model)
 
     train_dataset = load_from_disk("./output-k-200-cleaned-no-bad-words")
     eval_dataset = load_from_disk("./c4-lithuanian-validation")
@@ -51,7 +51,7 @@ def train():
 
     trainer_stats = trainer.train()
 
-    dist.destroy_process_group()
+    # dist.destroy_process_group()
 
     with open("output-mgpt-train.json", "w") as file:
         file.write(json.dumps(trainer.state.log_history))
