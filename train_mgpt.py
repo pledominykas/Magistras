@@ -7,50 +7,55 @@ import torch
 from torch.nn.parallel import DistributedDataParallel as DDP
 import torch.distributed as dist
 
-n_gpus = torch.cuda.device_count()
-dist.init_process_group()
+def train():
+    n_gpus = torch.cuda.device_count()
+    dist.init_process_group()
 
-tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
-model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT")
+    tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
+    model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT")
 
-if n_gpus > 1:
-    model = DDP(model, device_ids = [i for i in range(n_gpus)])
+    if n_gpus > 1:
+        model = DDP(model, device_ids = [i for i in range(n_gpus)])
 
-train_dataset = load_from_disk("./output-k-200-cleaned-no-bad-words")
-eval_dataset = load_from_disk("./c4-lithuanian-validation")
+    train_dataset = load_from_disk("./output-k-200-cleaned-no-bad-words")
+    eval_dataset = load_from_disk("./c4-lithuanian-validation")
 
-trainer = SFTTrainer(
-    model = model,
-    tokenizer = tokenizer,
-    train_dataset = train_dataset,
-    eval_dataset = eval_dataset,
-    dataset_text_field = "text",
-    max_seq_length = 2048,
+    trainer = SFTTrainer(
+        model = model,
+        tokenizer = tokenizer,
+        train_dataset = train_dataset,
+        eval_dataset = eval_dataset,
+        dataset_text_field = "text",
+        max_seq_length = 2048,
 
-    args = TrainingArguments(                             
-        gradient_accumulation_steps = 4,
-        gradient_checkpointing = True,
-        
-        num_train_epochs = 3,
-        learning_rate = 2e-4,
-        per_device_train_batch_size = 8,
-        per_device_eval_batch_size = 8,
+        args = TrainingArguments(                             
+            gradient_accumulation_steps = 4,
+            gradient_checkpointing = True,
+            
+            num_train_epochs = 3,
+            learning_rate = 2e-4,
+            per_device_train_batch_size = 8,
+            per_device_eval_batch_size = 8,
 
-        seed = 99,
-        output_dir = "./checkpoints-mgpt",
+            seed = 99,
+            output_dir = "./checkpoints-mgpt",
 
-        save_strategy = "steps",
-        eval_strategy = "steps",
+            save_strategy = "steps",
+            eval_strategy = "steps",
 
-        save_steps = 0.1,
-        eval_steps = 0.1,
-        logging_steps = 0.1
-    ),
-)
+            save_steps = 0.1,
+            eval_steps = 0.1,
+            logging_steps = 0.1
+        ),
+    )
 
-trainer_stats = trainer.train()
+    trainer_stats = trainer.train()
 
-dist.destroy_process_group()
+    dist.destroy_process_group()
 
-with open("output-mgpt-train.json", "w") as file:
-    file.write(json.dumps(trainer.state.log_history))
+    with open("output-mgpt-train.json", "w") as file:
+        file.write(json.dumps(trainer.state.log_history))
+
+
+if __name__ == "__main__":
+    train()
