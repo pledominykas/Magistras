@@ -3,9 +3,16 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from trl import SFTTrainer
 from transformers import TrainingArguments
 import json
+import torch
+from torch.nn.parallel import DistributedDataParallel as DDP
+
+n_gpus = torch.cuda.device_count()
 
 tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
 model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT")
+
+if n_gpus > 1:
+    model = DDP(model, device_ids = [i for i in range(n_gpus)])
 
 train_dataset = load_from_disk("./output-k-200-cleaned-no-bad-words")
 eval_dataset = load_from_disk("./c4-lithuanian-validation")
