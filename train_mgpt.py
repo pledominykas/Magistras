@@ -50,5 +50,7 @@ trainer = SFTTrainer(
 
 trainer_stats = trainer.train()
 
+dist.destroy_process_group()
+
 with open("output-mgpt-train.json", "w") as file:
     file.write(json.dumps(trainer.state.log_history))
