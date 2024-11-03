@@ -34,7 +34,7 @@ def train():
         max_seq_length = 2048,
 
         args = TrainingArguments(                             
-            gradient_accumulation_steps = 4,
+            gradient_accumulation_steps = 6,
             gradient_checkpointing = True,
             
             num_train_epochs = 3,
