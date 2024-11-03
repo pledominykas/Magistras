@@ -5,8 +5,10 @@ from transformers import TrainingArguments
 import json
 import torch
 from torch.nn.parallel import DistributedDataParallel as DDP
+import torch.distributed as dist
 
 n_gpus = torch.cuda.device_count()
+dist.init_process_group()
 
 tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
 model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT")
