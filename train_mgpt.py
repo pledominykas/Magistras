@@ -19,7 +19,7 @@ eval_dataset = eval_dataset.take(1000)
 training_args = TrainingArguments(
         optim = "adamw_bnb_8bit",
         fp16=True,
-        tf32=True,
+        # tf32=True,
         gradient_checkpointing = True,
 
         num_train_epochs = 1,
