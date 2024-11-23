@@ -1,11 +1,11 @@
-import os
-
-os.environ["CUDA_VISIBLE_DEVICES"] = os.environ["LOCAL_RANK"]
-
 from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from trl import SFTTrainer
 from transformers import TrainingArguments
+import os
+
+local_rank = int(os.environ["LOCAL_RANK"])
+print(f"LOCAL_RANK: {local_rank}")
 
 tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
 model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT")
