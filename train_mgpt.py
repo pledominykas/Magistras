@@ -4,8 +4,7 @@ from trl import SFTTrainer
 from transformers import TrainingArguments
 import os
 
-local_rank = int(os.environ["LOCAL_RANK"])
-print(f"LOCAL_RANK: {local_rank}")
+os.environ["CUDA_VISIBLE_DEVICES"] = os.environ["LOCAL_RANK"]
 
 tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
 model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT")
