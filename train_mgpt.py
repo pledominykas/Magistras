@@ -1,5 +1,4 @@
 from datasets import load_dataset
-from transformers import AutoTokenizer, AutoModelForCausalLM
 from trl import SFTTrainer
 from transformers import TrainingArguments
 import torch
@@ -7,9 +6,6 @@ import os
 
 local_rank = int(os.environ["LOCAL_RANK"])
 torch.cuda.set_device(local_rank)
-
-# tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
-# model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT")
 
 train_dataset = load_dataset("domce20/c4-lithuanian-final")
 eval_dataset = load_dataset("domce20/c4-lithuanian-validation")
@@ -51,7 +47,7 @@ trainer = SFTTrainer(
     eval_dataset = eval_dataset,
     dataset_text_field = "text",
 
-    max_seq_length = 2048,
+    max_seq_length = 512,
 
     args = training_args,
 )
