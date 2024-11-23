@@ -8,8 +8,8 @@ import os
 local_rank = int(os.environ["LOCAL_RANK"])
 torch.cuda.set_device(local_rank)
 
-tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
-model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT")
+# tokenizer = AutoTokenizer.from_pretrained("ai-forever/mGPT")
+# model = AutoModelForCausalLM.from_pretrained("ai-forever/mGPT")
 
 train_dataset = load_dataset("domce20/c4-lithuanian-final")
 eval_dataset = load_dataset("domce20/c4-lithuanian-validation")
@@ -45,8 +45,7 @@ training_args = TrainingArguments(
     )
 
 trainer = SFTTrainer(
-    model = model,
-    tokenizer = tokenizer,
+    model = "ai-forever/mGPT",
 
     train_dataset = train_dataset,
     eval_dataset = eval_dataset,
