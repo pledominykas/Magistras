@@ -53,4 +53,5 @@ trainer = SFTTrainer(
     args = training_args,
 )
 
-trainer_stats = trainer.train()
+if __name__ == "__main__":
+    trainer_stats = trainer.train()
