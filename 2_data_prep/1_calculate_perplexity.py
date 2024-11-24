@@ -13,7 +13,7 @@ def calculate_perplexity(entry):
     }
 
 if __name__ == "__main__":
-    dataset = load_dataset("allenai/c4", "lt")
+    dataset = load_dataset("allenai/c4", "lt")["train"]
 
     dataset_perplexity = dataset.map(calculate_perplexity, num_proc=cpu_count())
     dataset_perplexity.save_to_disk("../datasets/c4-lt-1-perplexity")
