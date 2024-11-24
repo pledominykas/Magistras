@@ -34,9 +34,9 @@ training_args = TrainingArguments(
         save_strategy = "steps",
         eval_strategy = "steps",
 
-        save_steps = 0.1,
-        eval_steps = 0.1,
-        logging_steps = 0.1,
+        save_steps = 0.2,
+        eval_steps = 0.2,
+        logging_steps = 500,
         load_best_model_at_end = True,
     )
 
@@ -48,6 +48,8 @@ trainer = SFTTrainer(
     dataset_text_field = "text",
 
     max_seq_length = 512,
+    # max_seq_length = 1024,
+    # max_seq_length = 2048,
 
     args = training_args,
 )
