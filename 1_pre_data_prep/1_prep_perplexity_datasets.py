@@ -8,8 +8,8 @@ dataset_lrt = dataset_lrt["train"]
 
 dataset_lrt = dataset_lrt.filter(lambda entry: entry["url"].startswith("https://www.lrt.lt/"))
 
-text_file_wiki = 'lithuanian_lrt.txt'
-text_file_lrt = 'lithuanian_wiki.txt'
+text_file_wiki = '../datasets/lithuanian_lrt.txt'
+text_file_lrt = '../datasets/lithuanian_wiki.txt'
 
 with open(text_file_wiki, 'w', encoding='utf-8') as f:
     for example in dataset_wiki:
