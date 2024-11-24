@@ -1,2 +1,3 @@
 datasets/
-deduplicate-image/deduplicate-text-datasets/target/
+models/
+deduplicate-text-datasets/target/
