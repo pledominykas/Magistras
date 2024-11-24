@@ -1,4 +1,5 @@
-from datasets import load_from_disk
+from datasets import load_dataset
+from multiprocessing import cpu_count
 
 def remove_non_lithuanian(entry):
     languages = entry["languages"]
@@ -8,7 +9,6 @@ def remove_non_lithuanian(entry):
 
     return True
 
-#https://github.com/pemistahl/lingua-py/blob/main/accuracy-reports/lingua-high-accuracy/Lithuanian.txt
 def slice_out_non_lithuanian(entry):
     languages = entry["languages"]   
     languages_to_remove = [language for language in languages if language["language"] != "Language.LITHUANIAN" and language["end_index"] - language["start_index"] > 30]
@@ -29,9 +29,9 @@ def slice_out_non_lithuanian(entry):
 
 
 if __name__ == "__main__":
-    dataset = load_from_disk("./output-k-200-with-language-results")
+    dataset = load_dataset("domce20/c4-lithuanian-enhanced")
     
-    results = dataset.filter(remove_non_lithuanian, num_proc=32)
-    results = results.map(slice_out_non_lithuanian, num_proc=32)
+    results = dataset.filter(remove_non_lithuanian, num_proc=cpu_count())
+    results = results.map(slice_out_non_lithuanian, num_proc=cpu_count())
 
-    results.save_to_disk("./output-k-200-cleaned")
+    results.save_to_disk("./datasets/c4-lt-filtered-1-language")
