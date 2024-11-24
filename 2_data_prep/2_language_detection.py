@@ -19,9 +19,7 @@ def detect_language(entry):
 if __name__ == "__main__":
     dataset = load_from_disk("../datasets/c4-lt-1-perplexity")
 
-    num_cores = cpu_count()
-
-    dataset_language = dataset.map(detect_language, num_proc=num_cores)
+    dataset_language = dataset.map(detect_language, num_proc=cpu_count())
 
     dataset_language.save_to_disk("../datasets/c4-lt-2-language")
     dataset_language.cleanup_cache_files()
