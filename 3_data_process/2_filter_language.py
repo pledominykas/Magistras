@@ -1,4 +1,4 @@
-from datasets import load_dataset
+from datasets import load_from_disk
 from multiprocessing import cpu_count
 
 def remove_non_lithuanian(entry):
@@ -29,9 +29,9 @@ def slice_out_non_lithuanian(entry):
 
 
 if __name__ == "__main__":
-    dataset = load_dataset("domce20/c4-lithuanian-enhanced")
+    dataset = load_from_disk("./datasets/c4-lt-filtered-1-perplexity")
     
     results = dataset.filter(remove_non_lithuanian, num_proc=cpu_count())
     results = results.map(slice_out_non_lithuanian, num_proc=cpu_count())
 
-    results.save_to_disk("./datasets/c4-lt-filtered-1-language")
+    results.save_to_disk("./datasets/c4-lt-filtered-2-language")

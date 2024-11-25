@@ -10,7 +10,7 @@ dataset = load_from_disk("./datasets/c4-lt-filtered-1-language")
 
 def filter_bad_words(entry):
     for bad_word in bad_words:
-        if bad_word in entry["text"]:
+        if " " + bad_word + " " in entry["text"]:
             return False
 
     return True
