@@ -35,3 +35,4 @@ if __name__ == "__main__":
     results = results.map(slice_out_non_lithuanian, num_proc=cpu_count())
 
     results.save_to_disk("./datasets/c4-lt-filtered-2-language")
+    results.cleanup_cache_files()

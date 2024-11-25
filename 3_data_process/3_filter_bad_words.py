@@ -18,3 +18,4 @@ def filter_bad_words(entry):
 results = dataset.filter(filter_bad_words, num_proc=cpu_count())
 
 results.save_to_disk("./datasets/c4-lt-filtered-3-bad-words")
+results.cleanup_cache_files()
