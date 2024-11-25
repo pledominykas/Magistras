@@ -8,7 +8,7 @@ if __name__ == "__main__":
     dataset = load_dataset("domce20/c4-lithuanian-enhanced")
     df = dataset.to_pandas()
 
-    threshold = df["perplexity_lrt"].quantile(0.75) #pabandyk su wiki, ir su kitais quantile, patikrink ilgius likusio dataset
+    threshold = df["perplexity_lrt"].quantile(0.75)
 
     results = dataset.filter(filter_by_perplexity, threshold=threshold, num_proc=cpu_count())
 
