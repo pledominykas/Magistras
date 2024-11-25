@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     threshold = df["perplexity"].quantile(0.75)
 
-    results = dataset.filter(filter_by_perplexity, threshold=threshold, num_proc=cpu_count())
+    results = dataset.filter(lambda e: filter_by_perplexity(e, threshold), num_proc=cpu_count())
 
     results.save_to_disk("./datasets/c4-lt-filtered-1-perplexity")
     results.cleanup_cache_files()
