@@ -27,8 +27,9 @@ training_args = TrainingArguments(
         save_strategy = "steps",
         eval_strategy = "steps",
 
-        eval_steps = 0.1,
-        logging_steps = 100,
+        save_steps = 0.25,
+        eval_steps = 0.01,
+        logging_steps = 0.01,
         load_best_model_at_end = True,
     )
 
@@ -45,4 +46,5 @@ trainer = SFTTrainer(
 )
 
 if __name__ == "__main__":
-    trainer_stats = trainer.train()
+    trainer.train()
+    trainer.save_model("./models/mgpt-512")
