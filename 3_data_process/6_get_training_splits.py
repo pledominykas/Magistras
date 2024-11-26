@@ -3,13 +3,13 @@ import pandas as pd
 
 dataset_validation = load_dataset("allenai/c4", "lt", split="validation")
 dataset = load_from_disk("./datasets/c4-lt-filtered-5-short-entries")
-df = pd.DataFrame(dataset["train"]["perplexity_wiki"], columns=["perplexity"])
+df = pd.DataFrame(dataset["perplexity_wiki"], columns=["perplexity"])
 
 one_percent_treshold = int(len(df) * 0.01)
 five_percent_treshold = int(len(df) * 0.05)
 
-treshold_25 = df["perplexity_wiki"].quantile(0.25)
-treshold_50 = df["perplexity_wiki"].quantile(0.5)
+treshold_25 = df["perplexity"].quantile(0.25)
+treshold_50 = df["perplexity"].quantile(0.5)
 
 def split_by_perplexity(entry):
     if entry["perplexity_wiki"] < treshold_25:
