@@ -4,4 +4,4 @@
 
 . "$HOME/.cargo/env"
 
-python3 -m text_dedup.suffix_array --path "./datasets/c4-lt-filtered-3-bad-words" --local --split "train" --k 400 --cache_dir "./cache" --output "./datasets/c4-lt-filtered-4-deduplicated-400" --column "text" --google_repo_path "../deduplicate-text-datasets"
+python3 -m text_dedup.suffix_array --path "./datasets/c4-lt-filtered-3-bad-words" --local --split "train" --k 400 --cache_dir "./cache" --output "./datasets/c4-lt-filtered-4-deduplicated" --column "text" --google_repo_path "../deduplicate-text-datasets"
