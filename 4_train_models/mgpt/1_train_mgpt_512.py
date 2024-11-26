@@ -30,7 +30,7 @@ training_args = TrainingArguments(
         save_steps = 0.1,
         eval_steps = 0.01,
         logging_steps = 0.01,
-        load_best_model_at_end = True,
+        # load_best_model_at_end = True,
     )
 
 trainer = SFTTrainer(
