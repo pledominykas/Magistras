@@ -1,7 +1,7 @@
 from datasets import load_from_disk, load_dataset
 import pandas as pd
 
-dataset_validation = load_dataset("allenai/c4", "lt", split="validation")["validation"]
+dataset_validation = load_dataset("allenai/c4", "lt", split="validation")
 dataset = load_from_disk("./datasets/c4-lt-filtered-5-short-entries")
 df = pd.DataFrame(dataset["train"]["perplexity_wiki"], columns=["perplexity"])
 
