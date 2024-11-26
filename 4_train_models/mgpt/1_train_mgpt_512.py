@@ -12,7 +12,7 @@ eval_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-validation
 
 training_args = TrainingArguments(
         optim = "adamw_bnb_8bit",
-        fp16=True,
+        fp16 = True,
         gradient_checkpointing = True,
 
         num_train_epochs = 1,
@@ -27,7 +27,7 @@ training_args = TrainingArguments(
         save_strategy = "steps",
         eval_strategy = "steps",
 
-        save_steps = 0.25,
+        save_steps = 0.1,
         eval_steps = 0.01,
         logging_steps = 0.01,
         load_best_model_at_end = True,
