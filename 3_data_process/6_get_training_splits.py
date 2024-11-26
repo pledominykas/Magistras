@@ -1,4 +1,4 @@
-from datasets import load_from_disk, load_dataset
+from datasets import load_from_disk, load_dataset, concatenate_datasets
 import pandas as pd
 
 dataset_validation = load_dataset("allenai/c4", "lt", split="validation")
@@ -36,13 +36,13 @@ dataset_100 = dataset.filter(lambda x: x["perplexity_quantile"] == "100").shuffl
 dataset_selected_1 = dataset_25.take(one_percent_treshold)
 
 dataset_unselected_1 = dataset_25.skip(one_percent_treshold)
-dataset_50 = dataset_50.concatenate(dataset_unselected_1)
+dataset_50 = concatenate_datasets([dataset_50, dataset_unselected_1])
 
 # Take 5% of 50th quantile, add remaining to 100th quantile
 dataset_selected_5 = dataset_50.take(five_percent_treshold)
 
 dataset_unselected_5 = dataset_50.skip(five_percent_treshold)
-dataset_100 = dataset_100.concatenate(dataset_unselected_5)
+dataset_100 = concatenate_datasets([dataset_100, dataset_unselected_5])
 
 
 # Save train datasets
