@@ -13,6 +13,8 @@ eval_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-validation
 model = AutoModelForCausalLM.from_pretrained("./models/eurollm-512")
 tokenizer = AutoTokenizer.from_pretrained("utter-project/EuroLLM-1.7B")
 
+tokenizer.pad_token = tokenizer.eos_token
+
 training_args = TrainingArguments(
         optim = "adamw_bnb_8bit",
         fp16 = True,
