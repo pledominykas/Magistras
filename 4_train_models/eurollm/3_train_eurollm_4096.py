@@ -22,9 +22,9 @@ training_args = TrainingArguments(
 
         num_train_epochs = 1,
         learning_rate = 2e-4,
-        per_device_train_batch_size = 2,
-        per_device_eval_batch_size = 2,
-        gradient_accumulation_steps = 8,
+        per_device_train_batch_size = 1,
+        per_device_eval_batch_size = 1,
+        gradient_accumulation_steps = 16,
 
         seed = 99,
         output_dir = "./checkpoints-eurollm-4096",
