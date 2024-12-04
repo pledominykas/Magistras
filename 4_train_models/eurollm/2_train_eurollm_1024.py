@@ -7,10 +7,10 @@ import os
 local_rank = int(os.environ["LOCAL_RANK"])
 torch.cuda.set_device(local_rank)
 
-train_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-1")
+train_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-5")
 eval_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-validation")
 
-model = AutoModelForCausalLM.from_pretrained("./models/eurollm-2048")
+model = AutoModelForCausalLM.from_pretrained("./models/eurollm-512")
 tokenizer = AutoTokenizer.from_pretrained("utter-project/EuroLLM-1.7B")
 
 tokenizer.pad_token = tokenizer.eos_token
@@ -27,7 +27,7 @@ training_args = TrainingArguments(
         gradient_accumulation_steps = 16,
 
         seed = 99,
-        output_dir = "./checkpoints-eurollm-4096",
+        output_dir = "./checkpoints-eurollm-1024",
 
         save_strategy = "steps",
         eval_strategy = "steps",
@@ -48,11 +48,11 @@ trainer = SFTTrainer(
     eval_dataset = eval_dataset,
     dataset_text_field = "text",
 
-    max_seq_length = 4096,
+    max_seq_length = 1024,
 
     args = training_args,
 )
 
 if __name__ == "__main__":
     trainer.train()
-    trainer.save_model("./models/eurollm-4096")
+    trainer.save_model("./models/eurollm-1024")
