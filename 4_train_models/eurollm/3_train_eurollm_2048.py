@@ -27,7 +27,7 @@ training_args = TrainingArguments(
         gradient_accumulation_steps = 16,
 
         seed = 99,
-        output_dir = "./checkpoints-eurollm-2048-2",
+        output_dir = "./checkpoints-eurollm-2048",
 
         save_strategy = "steps",
         eval_strategy = "steps",
@@ -55,4 +55,4 @@ trainer = SFTTrainer(
 
 if __name__ == "__main__":
     trainer.train()
-    trainer.save_model("./models/eurollm-2048-2")
+    trainer.save_model("./models/eurollm-2048")
