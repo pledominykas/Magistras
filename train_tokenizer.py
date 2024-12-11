@@ -11,8 +11,8 @@ raw_datasets = raw_datasets.remove_columns(["timestamp", "url"])
 
 def get_training_corpus():
     return (
-        raw_datasets["train"][i : i + 1000]["text"]
-        for i in range(0, len(raw_datasets["train"]), 1000)
+        raw_datasets["train"][i : i + 10000]["text"]
+        for i in range(0, len(raw_datasets["train"]), 10000)
     )
 
 training_corpus = get_training_corpus()
