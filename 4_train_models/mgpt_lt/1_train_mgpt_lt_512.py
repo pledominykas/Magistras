@@ -23,7 +23,7 @@ training_args = TrainingArguments(
         resume_from_checkpoint=checkpoint_path,
 
         optim = "adamw_hf",
-        fp16 = True,
+        # fp16 = True,
         gradient_checkpointing = True,
 
         num_train_epochs = 1,
