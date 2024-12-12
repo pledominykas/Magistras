@@ -1,20 +1,27 @@
 from datasets import load_from_disk
 from trl import SFTTrainer
 from transformers import TrainingArguments, AutoModelForCausalLM, AutoTokenizer, AutoConfig
+import transformers
 import torch
 import os
+
+transformers.logging.set_verbosity_info()
 
 local_rank = int(os.environ["LOCAL_RANK"])
 torch.cuda.set_device(local_rank)
 
-config = AutoConfig.from_pretrained("ai-forever/mGPT")
-model = AutoModelForCausalLM.from_config(config)
+checkpoint_path = "./checkpoints-mgpt-lt-512/checkpoint-12326"
+
+# config = AutoConfig.from_pretrained("ai-forever/mGPT")
+model = AutoModelForCausalLM.from_pretrained(checkpoint_path)
 tokenizer = AutoTokenizer.from_pretrained("domce20/mGPT-lithuanian-tokenizer")
 
 train_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-100")
 eval_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-validation")
 
 training_args = TrainingArguments(
+        resume_from_checkpoint=checkpoint_path,
+
         optim = "adamw_bnb_8bit",
         fp16 = True,
         gradient_checkpointing = True,
@@ -51,5 +58,5 @@ trainer = SFTTrainer(
 )
 
 if __name__ == "__main__":
-    trainer.train()
+    trainer.train(resume_from_checkpoint=checkpoint_path)
     trainer.save_model("./models/mgpt-lt-512")
