@@ -22,7 +22,7 @@ eval_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-validation
 training_args = TrainingArguments(
         resume_from_checkpoint=checkpoint_path,
 
-        optim = "adamw_torch",
+        optim = "adamw_bnb_8bit",
         # fp16 = True,
         gradient_checkpointing = True,
 
