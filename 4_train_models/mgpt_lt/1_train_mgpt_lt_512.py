@@ -38,7 +38,7 @@ training_args = TrainingArguments(
         save_strategy = "steps",
         eval_strategy = "steps",
 
-        save_steps = 0.1,
+        save_steps = 0.05,
         eval_steps = 0.01,
         logging_steps = 0.01,
         # load_best_model_at_end = True,
