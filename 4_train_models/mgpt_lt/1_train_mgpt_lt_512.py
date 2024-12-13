@@ -16,8 +16,6 @@ checkpoint_path = "./checkpoints-mgpt-lt-512/checkpoint-12326"
 model = AutoModelForCausalLM.from_pretrained(checkpoint_path)
 tokenizer = AutoTokenizer.from_pretrained("domce20/mGPT-lithuanian-tokenizer")
 
-tokenizer.padding_side = "right"
-
 train_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-100")
 eval_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-validation")
 
@@ -25,7 +23,7 @@ training_args = TrainingArguments(
         resume_from_checkpoint=checkpoint_path,
 
         optim = "adamw_bnb_8bit",
-        fp16 = True,
+        # fp16 = True,
         gradient_checkpointing = True,
 
         num_train_epochs = 1,
