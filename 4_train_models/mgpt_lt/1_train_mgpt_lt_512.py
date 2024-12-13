@@ -5,8 +5,6 @@ import transformers
 import torch
 import os
 
-transformers.logging.set_verbosity_info()
-
 local_rank = int(os.environ["LOCAL_RANK"])
 torch.cuda.set_device(local_rank)
 
