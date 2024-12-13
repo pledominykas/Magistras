@@ -19,11 +19,12 @@ tokenizer = AutoTokenizer.from_pretrained("domce20/mGPT-lithuanian-tokenizer")
 train_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-100")
 eval_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-validation")
 
-training_args = TrainingArguments(
-        resume_from_checkpoint=checkpoint_path,
+# Skip first 20% of train dataset
+train_dataset = train_dataset.filter(lambda x, i: i >= len(train_dataset) // 5)
 
+training_args = TrainingArguments(
         optim = "adamw_bnb_8bit",
-        # fp16 = True,
+        fp16 = True,
         gradient_checkpointing = True,
 
         num_train_epochs = 1,
@@ -58,5 +59,5 @@ trainer = SFTTrainer(
 )
 
 if __name__ == "__main__":
-    trainer.train(resume_from_checkpoint=checkpoint_path)
+    trainer.train()
     trainer.save_model("./models/mgpt-lt-512")
