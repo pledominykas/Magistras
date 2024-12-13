@@ -22,7 +22,7 @@ train_dataset = train_dataset.skip(round(0.2 * len(train_dataset)))
 
 training_args = TrainingArguments(
         optim = "adamw_bnb_8bit",
-        fp16 = True,
+        # fp16 = True,
         gradient_checkpointing = True,
 
         num_train_epochs = 1,
