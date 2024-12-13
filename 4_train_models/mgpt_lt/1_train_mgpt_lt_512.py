@@ -18,7 +18,7 @@ train_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-100")
 eval_dataset = load_from_disk("./datasets/c4-lt-filtered-6-perplexity-validation")
 
 # Skip first 20% of train dataset
-train_dataset = train_dataset.filter(lambda x, i: i >= len(train_dataset) // 5)
+train_dataset = train_dataset.skip(round(0.2 * len(train_dataset)))
 
 training_args = TrainingArguments(
         optim = "adamw_bnb_8bit",
